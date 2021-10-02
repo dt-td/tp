@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S1-CS2103T-W16-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103T-W16-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103T-W16-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -59,7 +59,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -69,13 +69,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S1-CS2103T-W16-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S1-CS2103T-W16-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103T-W16-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,7 +86,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S1-CS2103T-W16-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -96,7 +96,7 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -114,7 +114,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-W16-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -135,7 +135,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-W16-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -254,74 +254,773 @@ _{Explain here how the data archiving feature will be implemented}_
 ## **Appendix: Requirements**
 
 ### Product scope
-
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+A private tutor that:
+* has a need to manage a significant number of students' details
+* prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage students' details faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                                          | I want to …​                                                               | So that I can…​                                                                                       |
+| -------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `* * *`  | tutor                                                               | my students’ parents' contacts                                                | update them on their children’s progress                                                                 |
+| `* * *`  | tutor who teaches students with differing academic strengths        | update the progress of my students                                            | ensure that each student is being appropriately challenged                                               |
+| `* * *`  | caring tutor                                                        | track my students' submissions and grades                                     | study how they have doing                                                                                |
+| `* * *`  | tutor                                                               | check which student has not paid                                              | remind the student to make the payment soon                                                              |
+| `* * *`  | tutor                                                               | able to use TutorAid offline                                                  | refer to my students' details even when there is no internet connection                                  |
+| `* * *`  | tutor                                                               | add or delete student contacts and any of their related information with ease | keep up with a changing list of students                                                                 |
+| `* * *`  | tutor with many students to keep track of                           | record feedback of each student in the app after each class                   | recall any important details or information when giving feedback to parents on their child's performance |
+| `* *`    | tutor                                                               | set up a to-do list for every session                                         | record what I need to cover for every session                                                            |
+| `* *`    | tutor with many classes to keep track of                            | check my tasks for the day                                                    | refresh my memory of what needs to be done for each class                                                |
+| `* *`    | new user                                                            | to be able to easily access and refer to the command guide                    | quickly and easily add details to the database without having prior experience of doing so               |
+| `* *`    | tutor with a different schedule every day                           | easily access my schedule for the day and week ahead                          | manage my time well                                                                                      |
+| `* *`    | tutor with many students in each class                              | to view which students are in my current class                                | know who is absent and contact them                                                                      |
+| `* *`    | tutor                                                               | check if my students have any upcoming milestones                             | prepare the relevant materials for my students (e.g. past year papers / cheat sheets)                    |
+| `* *`    | private tutor who may provide ad-hoc lessons to some of my students | track the number of lessons I provide for each student                        | ensure that I receive the correct payment from each student at the end of each month                     |
+| `* *`    | tutor                                                               | add the topics to be covered for the next few weeks for each class            | plan the lessons for future weeks ahead of time                                                          |
+| `* *`    | tutor who allows the enrollment of new students throughout the year | set the student capacity for each class                                       | check which of the classes new students are able to join                                                 |
+| `* *`    | tutor who prices lessons for different classes at different rates   | record an individual price for each class                                     | track how much each of my students need to pay at the each month                                         |
+| `* *`    | tutor                                                               | edit the students in each class                                               | record any changes in the classes that each of my students attend                                        |
+| `* *`    | forgetful tutor                                                     | check for the TutorAid commands fast                                          | conveniently operate the app                                                                             |
+| `* *`    | tutor                                                               | able to view when I have last updated the progress for each student           | ensure that I consistently update progress for all students                                              |
+| `* *`    | tutor                                                               | add students into multiple classes in TutorAid                                | record students who are taking more than 1 of my classes                                                 |
+| `*`      | expert user                                                         | bulk-edit my students’ details                                                | easily transit into the next school year                                                                 |
 
-*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TutorAid` and the **Actor** is the `tutor`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use Case 1: Add a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. Tutor collates information related to the student to be added
+
+2. Tutor adds the student by passing the student's name and other details to TutorAid
+
+3. TutorAid adds the student and displays a message indicating that this has been done
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Tutor enters the `add` command without using the correct format
+
+  * 1a1. TutorAid displays an error message and requests the tutor to re-enter the command
+
+  * 1a2. Tutor re-enters the command, along with the necessary arguments
+
+    Steps 1a1-1a2 are repeated until the data entered is correct.
+
+    Use case resumes from step 3.
+
+* 2a. Tutor realises that they added the details wrongly
+
+  * 2a1. Tutor <u>deletes the student (UC02)</u> who was just added
+
+    Use case resumes from step 2
+
+**Use Case 2: Delete a student**
+
+**MSS**
+1. Tutor views the list of his/her students.
+2. Tutor identifies the contact of the student that is to be deleted and takes note of the index number.
+3. Tutor enters the index number along with the ‘delete’ command.
+4. TutorAid successfully deletes the contact of the student corresponding to the given index number.
+   Use case ends.
+
+**Extensions**
+*  1a. TutorAid detects an error in the list command
+
+    * 1a1. TutorAid displays an error message and requests the tutor to re-enter the command.
+
+    * 1a2. User re-enters the command.
+
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 2.
+
+*  3a. TutorAid detects a wrongly formatted command to delete a student (e.g. missing fields in the component, typos in the command)
+
+    * 3a1. TutorAid displays an error message and requests the tutor to re-enter the command.
+
+    * 3a2. User re-enters the command with a revised format.
+
+      Steps 3a1-3a2 are repeated until the command entered is correct.
+
+      Use case resumes from step 4.
+
+*  3b. TutorAid detects an invalid student index number (e.g. a negative index number, a non-integer index number, a non-existent index number)
+
+    *  3b1. TutorAid displays an error message and requests the tutor to re-enter the command.
+
+    *  3b2. User re-enters the command with another student index number.
+
+       Steps 3b1-3b2 are repeated until the command entered is correct.
+
+       Use case resumes from step 4.
+
+**Use Case 3: Updating a student’s detail record**
+
+Preconditions: The student's details have been previously added to TutorAid.
+
+**MSS**
+
+1. Tutor views the list of his/her students
+2. Tutor identifies the index of the student, and requests to delete the specified student in the list
+3. TutorAid deletes the student from the list
+4. Tutor requests to add the student in the list, and provides the updated details of the student
+5. TutorAid adds the student to the list
+6. TutorAid displays a message indicating the student has been successfully added
+
+**Extensions**
+
+* 1a. TutorAid detects an error in the list command.
+
+    * 1a1. TutorAid displays an error message and requests the tutor to re-enter the command.
+    * 1a2. User re-enters the command.
+
+      Steps 1a1-1a2 are repeated until the command entered is correct.
+      Use case resumes from step 2.
+
+* 2a. The given index is invalid.
+
+    * 2a1. TutorAid shows an error message.
+    * 2a2. Tutor re-enters a new index.
+
+      Steps 2a1 - 2a2 are repeated until a valid index is given.
+      Use case resumes from step 3.
+
+* 4a. The given syntax is invalid.
+
+    * 4a1. TutorAid shows an error message.
+    * 4a2. Tutor re-enters the student details.
+
+      Steps 4a1 - 4a2 are repeated until a valid syntax is given.
+      Use case resumes from step 5.
+
+* 4b. Tutor mistypes the student's updated details.
+
+  Use case starts over from step 1.
+
+**Use case 4: Update a student's progress**
+
+**MSS**
+
+1. Tutor views the list of his/her students
+2. TutorAid displays the list of students
+3. Tutor identifies the student index to update their progress
+4. Tutor updates progress for that student
+5. TutorAid registers the new progress for the student at the specified index number
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Invalid list command syntax
+
+    * 1a1. TutorAid displays an error message and requests the tutor to re-enter the command.
+
+    * 1a2. Tutor re-enters the command.
+
+      Steps 1a1-1a2 are repeated until the syntax entered is correct. Use case resumes from step 2.
+
+* 1b. The list is empty. Use case ends.
+
+* 4a. Invalid add/delete progress syntax
+
+    * 4a1. TutorAid displays an error message and requests the tutor to re-enter the command.
+
+    * 4a2. Tutor re-enters the command
+
+      Steps 3a1 - 3a2 are repeated until a valid syntax is given. Use case resumes from step 5
+
+* 5a. Incorrectly updating the progress of another student
+
+    * 5a1. Tutor uses add/delete progress commands to revert the incorrect changes. Use case resume from step 3
+
+**Use case 5: Updating payment for student**
+
+Preconditions: There is at least one student added to TutorAid.
+
+**MSS**
+
+1.  User views list of students
+2.  User identifies the student index to update payment record
+3.  User updates payment for student
+4.  TutorAid successfully updates the payment for a student corresponding to the given index number.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. Invalid list command syntax
+
+    * 1a1. TutorAid displays an error message and requests the tutor to re-enter the command.
+    * 1a2. User re-enters the command.
+
+      Steps 1a1-1a2 are repeated until the syntax entered is correct.
+      Use case resumes from step 2.
+
+* 3a. Invalid paid/unpaid command syntax
+
+    * 3a1. TutorAid displays an error message and requests the tutor to re-enter the command.
+    * 3a2. User re-enters the command
+
+      Steps 3a1 - 3a2 are repeated until a valid syntax is given
+      Use case resumes from step 4
+
+* 3b. The given student index is invalid
+
+    * 3b1. TutorAid shows an error message
+    * 3b2. User enters a new index with paid/unpaid command
+
+      Steps 3a1 - 3a2 are repeated until a valid index is given
+      Use case resumes from step 4
+
+**Use case 6: View a student's details**
+
+Precondition: The student's details have been added to TutorAid.
+
+**MSS**
+
+1. Tutor requests a list of students
+
+2. TutorAid shows the list of students
+
+3. Tutor finds the specific student in the list and requests to view the student's details
+
+4. TutorAid shows the student's details
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. The given index is invalid
+
+    * 3a1. TutorAid shows an error message
+
+      Use case resumes at step 3
+
+**Use case 7: Add a todo list for a session**
+
+**MSS**
+
+1. Tutor views his schedule
+2. TutorAid displays the schedule
+3. Tutor identifies the session to add a todo list
+4. Tutor adds a todo task to that session
+5. TutorAid registers the task to the session
+6. Tutor repeats from step 4 until he/she finishes adding all the tasks
+
+   Use case ends.
+
+**Extensions**
+* 1a. Invalid view schedule command syntax
+
+    * 1a1. TutorAid displays an error message and requests the tutor to re-enter the command.
+
+    * 1a2. Tutor re-enters the command.
+
+      Steps 1a1-1a2 are repeated until the syntax entered is correct. Use case resumes from step 2.
+
+* 4a. Invalid add task command syntax
+
+    * 4a1. TutorAid displays an error message and requests the tutor to re-enter the command.
+
+    * 4a2. Tutor re-enters the command.
+
+      Steps 4a1-4a2 are repeated until the syntax entered is correct. Use case resumes from step 5.
+
+* 4b. The session does not exist.
+
+    * 4b2. TutorAid displays an error message that the session does not exist.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+**Use Case 8: View schedule for the upcoming week**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1.  Tutor enters the end date of the upcoming week, and requests to view the schedule up till that date
+2.  TutorAid shows the sessions and milestones happening in the upcoming week, in a calendar view
+3.  Tutor clicks on a specific date in the calendar
+4.  TutorAid shows the details of the sessions and milestones happening on that specific date, in a list view
+5.  Tutor requests to return to the calendar view
+    Steps 2 - 5 are repeated until Tutor decides to stop viewing the details of sessions and milestones
+    happening on a specific date in the upcoming week.
 
-*{More to be added}*
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given date has an invalid format.
+
+    * 1a1. TutorAid shows an error message.
+    * 1a2. Tutor re-enters the date.
+
+      Steps 1a1 - 1a2 are repeated until a valid format for the date is given.
+      Use case resumes from step 2.
+      
+* 1b. TutorAid detects an error in the view schedule command.
+
+    * 1b1. TutorAid displays an error message and requests the tutor to re-enter the command.
+    * 1b2. User re-enters the command.
+
+      Steps 1b1-1b2 are repeated until the command entered is correct.
+      Use case resumes from step 2.
+
+**Use case 9: Check which students should be present for the class**
+
+**MSS**
+
+1. Tutor views his schedule
+2. TutorAid displays the schedule
+3. Tutor identifies the session to check for students
+4. Tutor views the list of students in that session
+5. TutorAid displays the list of students in the session
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Invalid view schedule command syntax
+
+    * 1a1. TutorAid displays an error message and requests the tutor to re-enter the command.
+
+    * 1a2. Tutor re-enters the command.
+
+      Steps 1a1-1a2 are repeated until the syntax entered is correct. Use case resumes from step 2.
+
+* 4a. Invalid view session students command syntax
+
+    * 4a1. TutorAid displays an error message and requests the tutor to re-enter the command.
+
+    * 4a2. Tutor re-enters the command.
+
+      Steps 4a1-4a2 are repeated until the syntax entered is correct. Use case resumes from step 5.
+
+**Use case 10: Reset payment status for all students at the end of the month**
+
+Preconditions: There is at least one student added to TutorAid.
+
+**MSS**
+
+1.  Tutor views the list of his/her students
+2.  Tutor identifies that all students have made payment for the month
+3.  Tutor keys in the reset payment command to set all student payments as unpaid
+4.  Tutor successfully resets payment for all students
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. TutorAid detects an error in the list command
+
+    * 1a1. TutorAid displays an error message and requests the tutor to re-enter the command.
+    * 1a2. User re-enters the command.
+
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+      Use case resumes from step 2.
+
+* 3a. TutorAid detects an error in the reset payment command
+
+    * 3a1. TutorAid displays an error message and requests the tutor to re-enter the command.
+    * 3a2. User re-enters the command.
+
+      Steps 3a1-3a2 are repeated until the data entered are correct.
+      Use case resumes from step 4.
+
+**Use Case 11: View upcoming milestones for all students**
+
+**MSS**
+
+1.  Tutor requests to view the students' upcoming milestones
+2.  TutorAid shows the upcoming milestones in a chronological order
+
+    Use case ends.
+    
+**Extensions**
+    
+* 1a. TutorAid detects an error in the view milestones command.
+
+    * 1a1. TutorAid displays an error message and requests the tutor to re-enter the command.
+    * 1a2. User re-enters the command.
+
+      Steps 1a1-1a2 are repeated until the command entered is correct.
+      Use case resumes from step 2.
+
+**Use case 12: View income for the month**
+
+Preconditions: There is at least one student added to TutorAid.
+
+**MSS**
+
+1. Tutor keys in the view income command to view income earned for the month
+2. Tutor successfully views income earned for the month
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. TutorAid detects an error in the view income command
+
+    * 1a1. TutorAid displays an error message and requests the tutor to re-enter the command.
+    * 1a2. User re-enters the command.
+
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+      Use case resumes from step 2.
+
+**Use case 13: Set up a recurring class**
+
+Preconditions: The students of the class have been added to TutorAid.
+
+**MSS**
+
+1. Tutor requests to add a class
+
+2. TutorAid requests for details of the class including day of the week, time and price
+
+3. Tutor enters the details of the class
+
+4. TutorAid creates the class
+
+5. Tutor <u>adds a student to the class (UC14)</u>
+
+   Step 5 is repeated until all students have been added
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. The class appears to overlap with another class as intended by the Tutor
+
+    * 3a1. TutorAid displays a warning
+
+    * 3a2. The tutor dismisses the warning
+
+      Use case resumes at step 4
+
+* 3b. The class appears to overlap with another class due to a mistake by the Tutor
+
+    * 3b1. TutorAid displays a warning
+
+    * 3b2. The tutor acknowledges the warning and cancels the creation of the class
+
+      Use case resumes at step 1
+
+* 3c. TutorAid detects invalid input
+
+    * 3c1. TutorAid displays a warning
+
+    * 3c2. The tutor acknowledges the warning
+
+      Use case resumes at step 3
+
+**Use case 14: Add a student to a class**
+
+Preconditions: The students of the class have been added to TutorAid, and the class has been created correctly.
+
+**MSS**
+
+1. Tutor requests a list of classes
+
+2. TutorAid displays a list of classes
+
+3. Tutor requests to add students to a specific class
+
+4. TutorAid displays the list of students
+
+5. Tutor chooses some students from the list to be added
+
+6. TutorAid shows a confirmation message
+
+7. Tutor confirms the action
+
+8. TutorAid adds the selected students to the class
+
+   Use case ends.
+
+**Extensions**
+
+* 6a. Tutor declines the confirmation.
+
+    * 6a1. TutorAid stops the action.
+
+      Use case resumes at step 3.
+
+**Use Case 15: Edit students in a class**
+
+**MSS**
+1. Tutor views the list of his/her students.
+2. Tutor identifies the contact of the student who is to be removed from a specific class and takes note of the index number.
+3. Tutor views the list of his/her classes.
+4. Tutor identifies the class he/she wishes to modify and takes note of the index number.
+5. Tutor keys in the student index number and the class index number along with the command to remove a student from a class.
+6. TutorAid successfully removes the student corresponding to the given index number from the class corresponding to the given class index number.
+   Use case ends.
+
+**Extensions**
+*  1a. TutorAid detects an error in the `list` command (e.g. command is misspelt)
+
+    *  1a1. TutorAid displays an error message and requests the tutor to re-enter the command.
+
+    *  1a2. User re-enters the command.
+
+       Steps 1a1-1a2 are repeated until the data entered are correct.
+
+       Use case resumes from step 2.
+
+*  3a. TutorAid detects an error in the command to list classes (e.g. command is misspelt)
+
+    *  3a1. TutorAid displays an error message and requests the tutor to re-enter the command.
+
+    *  3a2. User re-enters the command.
+
+       Steps 3a1-3a2 are repeated until the data entered are correct.
+
+       Use case resumes from step 4.
+
+*  5a. TutorAid detects a wrongly formatted command to remove a student from a class (e.g. missing fields in the component, typos in the command)
+
+    *  5a1. TutorAid displays an error message and requests the tutor to re-enter the command.
+
+    *  5a2. User re-enters the command with a revised format.
+
+       Steps 5a1-5a2 are repeated until the command entered is correct.
+
+       Use case resumes from step 6.
+
+*  5b. TutorAid detects an invalid student/class index number (e.g. a negative index number, a non-integer index number, a non-existent index number)
+
+    * 5b1. TutorAid displays an error message and requests the tutor to re-enter the command.
+
+    * 5b2. User re-enters the command with another student/class index number.
+
+       Steps 5b1-5b2 are repeated until the command entered is correct.
+
+       Use case resumes from step 5.
+
+**Use Case 16: Edit timing of a recurring class**
+
+**MSS**
+1. Tutor identifies the class he/she wishes to modify and takes note of the index number.
+2. Tutor keys in the command to modify the timing of a class, along with the new day, start and end timings of the class, and the class index number.
+3. TutorAid successfully updates the start and end timings of the class corresponding to the given class index number.
+   Use case ends.
+
+**Extensions**
+
+*  1a. TutorAid detects an error in the command to list classes (e.g. command is misspelt)
+
+    *  1a1. TutorAid displays an error message highlighting the wrongly formatted command and requests the tutor to re-enter the command.
+
+    *  1a2. User re-enters the command.
+
+       Steps 1a1-1a2 are repeated until the data entered are correct.
+
+       Use case resumes from step 2.
+
+*  2a. TutorAid detects a wrongly formatted command to edit the timing of a recurring class (e.g. missing fields in the component, typos in the command)
+
+    *  2a1. TutorAid displays an error message highlighting the wrongly formatted command and requests the tutor to re-enter the command.
+
+    *  2a2. User re-enters the command with the revised format.
+
+       Steps 2a1-2a2 are repeated until the command entered is correct.
+
+       Use case resumes from step 3.
+
+*  2b. TutorAid detects an invalid class index number (e.g. a negative index number, a non-integer index number, a non-existent index number)
+
+    *  2b1. TutorAid displays an error message highlighting the invalid class index number and requests the tutor to re-enter the command.
+
+    *  2b2. User re-enters the command with the class index number.
+
+       Steps 2b1-2b2 are repeated until the command entered is correct.
+
+       Use case resumes from step 3.
+
+*  2c. TutorAid detects an invalid day (e.g. a misspelled day)
+
+    *  2c1. TutorAid displays an error message highlighting the invalid input for the day and requests the tutor to re-enter the command.
+
+    *  2c2. User re-enters the command with the day.
+
+       Steps 2c1-2c2 are repeated until the command entered is correct.
+
+       Use case resumes from step 3.
+
+*  2d. TutorAid detects an invalid start/end timings (e.g. wrongly formatted timing, hours stated is less than 0 or more than 23, minutes stated is less than 0 or more than 59)
+
+    *  2d1. TutorAid displays an error message highlighting the invalid timings and requests the tutor to re-enter the command.
+
+    *  2d2. User re-enters the command with a different pair of timings.
+
+       Steps 2d1-2d2 are repeated until the command entered is correct.
+
+       Use case resumes from step 3.
+
+*  2e. TutorAid detects a clash with another existing class (e.g. overlapping timings on the same day)
+
+    *  2e1. TutorAid displays an error message highlighting the clash in classes and requests the tutor to key in a different day and/or a pair of timings.
+
+    *  2e2. User re-enters the command with A different day and/or different pair of timings.
+
+       Steps 2e1-2e2 are repeated until the command entered is correct.
+
+       Use case resumes from step 3.
+
+**Use Case 17: Edit timing of an ad-hoc class**
+
+**MSS**
+1. Tutor identifies the class he/she wishes to modify and takes note of the index number.
+2. Tutor keys in the command to modify the timing of a class, along with the new date, start and end timings of the class, and the class index number.
+3. TutorAid successfully updates the start and end timings of the class corresponding to the given class index number.
+   Use case ends.
+
+**Extensions**
+*  1a. TutorAid detects an error in the command to list classes (e.g. command is misspelt)
+
+    *  1a1. TutorAid displays an error message highlighting the wrongly formatted command and requests the tutor to re-enter the command.
+
+    *  1a2. User re-enters the command.
+
+       Steps 1a1-1a2 are repeated until the data entered are correct.
+
+       Use case resumes from step 2.
+
+*  2a. TutorAid detects a wrongly formatted command to edit the timing of an ad-hoc class (e.g. missing fields in the component, typos in the command)
+
+    *  2a1. TutorAid displays an error message highlighting the wrongly formatted command and requests the tutor to re-enter the command.
+
+    *  2a2. User re-enters the command with a revised format.
+
+       Steps 2a1-2a2 are repeated until the command entered is correct.
+
+       Use case resumes from step 3.
+
+*  2b. TutorAid detects an invalid class index number (e.g. a negative index number, a non-integer index number, a non-existent index number)
+
+    *  2b1. TutorAid displays an error message highlighting the invalid class index number and requests the tutor to re-enter the command.
+
+    *  2b2. User re-enters the command with another class index number.
+
+       Steps 2b1-2b2 are repeated until the command entered is correct.
+
+       Use case resumes from step 3.
+
+*  2c. TutorAid detects an invalid date (e.g. a wrongly formatted date, non-existent date, day is less than 1 and more than 31, month is less than 1 and more than 12, year is less than the current year)
+
+    *  2c1. TutorAid displays an error message highlighting the invalid input for the date and requests the tutor to re-enter the command.
+
+    *  2c2. User re-enters the command with another date.
+
+       Steps 2c1-2c2 are repeated until the command entered is correct.
+
+       Use case resumes from step 3.
+
+*  2d. TutorAid detects an invalid start/end timings (e.g. wrongly formatted timing, hours stated is less than 0 or more than 23, minutes stated is less than 0 or more than 59)
+
+    *  2d1. TutorAid displays an error message highlighting the invalid timings and requests the tutor to re-enter the command.
+
+    *  2d2. User re-enters the command with another pair of timings.
+
+       Steps 2d1-2d2 are repeated until the command entered is correct.
+
+       Use case resumes from step 3.
+
+*  2e. TutorAid detects a clash with another existing class (e.g. overlapping timings on the same date)
+
+    *  2e1. TutorAid displays an error message highlighting the clash in classes and requests the tutor to key a different day and/or a pair of timings.
+
+    *  2e2. User re-enters the command with A different day and/or different pair of timings.
+
+       Steps 2e1-2e2 are repeated until the command entered is correct.
+
+       Use case resumes from step 3.
+
+**Use Case 18: Edit pricing of a class**
+
+**MSS**
+1. Tutor identifies the class he/she wishes to modify and takes note of the index number.
+2. Tutor keys in the command to modify the pricing of a class, along with the new price of the class and the class index number.
+3. TutorAid successfully updates the pricing of the class corresponding to the given class index number.
+   Use case ends.
+
+**Extensions**
+*  1a. TutorAid detects an error in the command to list classes (e.g. command is misspelt)
+
+    *  1a1. TutorAid displays an error message highlighting the wrongly formatted command and requests the tutor to re-enter the command.
+
+    *  1a2. User re-enters the command.
+
+       Steps 1a1-1a2 are repeated until the data entered are correct.
+
+       Use case resumes from step 2.
+
+*  2a. TutorAid detects a wrongly formatted command to edit the pricing of a class (e.g. missing fields in the component, typos in the command)
+
+    *  2a1. TutorAid displays an error message highlighting the wrongly formatted command and requests the tutor to re-enter the command.
+
+    *  2a2. User re-enters the command with a revised format.
+
+       Steps 2a1-2a2 are repeated until the command entered is correct.
+
+       Use case resumes from step 3.
+
+*  2b. TutorAid detects an invalid class index number (e.g. a negative index number, a non-integer index number, a non-existent index number)
+
+    *  2b1. TutorAid displays an error message highlighting the invalid class index number and requests the tutor to re-enter the command.
+
+    *  2b2. User re-enters the command with another class index number.
+
+       Steps 2b1-2b2 are repeated until the command entered is correct.
+
+       Use case resumes from step 3.
+
+*  2c. TutorAid detects an invalid price (e.g. price not stated to 2 decimal places, negative price)
+
+    * 2c1. TutorAid displays an error message highlighting the invalid price and requests the tutor to re-enter the command.
+
+    * 2c2. User re-enters the command with another date.
+
+       Steps 2c1-2c2 are repeated until the command entered is correct.
+
+       Use case resumes from step 3.
 
 ### Non-Functional Requirements
-
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1.  The system should be able to run on any machine that has Java 11 or higher installed.
+2.  The user should be able to access the list of available commands within 2 inputs/clicks.
+3.  The length of the user commands should not be more than 20 characters (excluding the arguments).    
+4.  No user input should corrupt the data file. (The data file should still be able to be parsed by TutorAid at all times)
+5.  The system should respond within 5 seconds for any action.
+6.  The system should not crash even when hundreds of student data are stored.
+7.  The system should only be able to handle up to 1000 students.
+8.  The user input elements are still visible even with hundreds of data records being displayed.
+9.  The project is expected to adhere to a schedule that delivers updates every 2 weeks.
+10.  The product should be fully functional offline and should not rely on internet connection to carry out any of its functions.
+11.  The product is not required to handle mobile phone capabilities.
+12.  The product is not required to handle any other languages (other than English).
+13.  The product is not required to facilitate monetary transactions for payment of tuition fees.
+14.  The product data should be transferable from one computer to another.
 
 ### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Class**: Contains all the details and constructs the timing and structure of a session (e.g. Physics, Wednesday 3-4pm)
+* **Session**: A occurrence of a class (e.g. Physics, 1 Sept 2021 3-4pm)
+* **Milestone**: An upcoming, important assessment for a class
+* **To-do list**: Tasks to be done before and during a session
+* **Schedule**: A calendar view of all sessions and milestones
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+TutorAid is a **desktop app for private tutors to match their students' contacts, optimized for use via a Command Line 
+Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TutorAid 
+can get your student management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,9 +16,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `tutoraid.jar` from [here](https://github.com/AY2122S1-CS2103T-W16-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your TutorAid.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -26,9 +28,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add -s`** sn/John Does sp/81234567 pn/Mrs Doe pp/91234567` : 
+     Adds a student named `John Doe` to TutorAid, along with the student's contact number, parent's name and parent's 
+     contact number.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`3` : Deletes the 3rd student shown in the current list.
 
    * **`clear`** : Deletes all contacts.
 
@@ -43,24 +47,20 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by the user and can contain spaces.
+e.g. in `add sn/STUDENT_NAME`, `STUDENT_NAME` is a parameter which can be used as add n/John Doe.
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Items in square brackets are optional.
+e.g `sn/STUDENT_NAME [sp/STUDENT_PHONE]` can be used as `sn/John Doe sp/91234567` or as `sn/John Doe`.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+* Parameters can be in any order.
+e.g. if the command specifies `sn/STUDENT_NAME sp/STUDENT_PHONE`, `sp/STUDENT_PHONE sn/STUDENT_NAME` is also acceptable.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* If a parameter is expected only once in the command but if you specify it multiple times, only the last occurrence of the parameter will be taken.
+e.g. if you specify `p/92341234 p/86785678`, only `p/86785678` will be taken.
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.
+e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
@@ -72,75 +72,49 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Adding a student: `add`
+Adds a new student to TutorAid.
 
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `add -s sn/STUDENT_NAME [sp/STUDENT_PHONE] [pn/PARENT_NAME] [pp/PARENT_PHONE]`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add -s sn/John Does sp/81234567 pn/Mrs Doe pp/91234567`
 
-### Listing all persons : `list`
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The student's phone number, parent's name and parent's phone number are optional details for tutors to include.
+</div>
 
-Shows a list of all persons in the address book.
+### Listing all students : `list`
+
+Shows a list of all students in TutorAid in the order that they were added.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Deleting a student : `delete`
+Deletes the specified student with the given student index from TutorAid.
 
-Edits an existing person in the address book.
+Format: `del -s STUDENT_INDEX`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+* Deletes the student at the specified STUDENT_INDEX.
+* The index refers to the index number shown in the displayed student list.
+* The index must be a positive integer 1,2,3, …​
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Example:
+* `del -s 2` deletes the 2nd student in TutorAid.
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+### Viewing a student : `view`
 
-### Locating persons by name: `find`
+Displays the specified student’s name, phone number, progress and payment status, along with their parent’s name and phone number.
 
-Finds persons whose names contain any of the given keywords.
+Format: `view STUDENT_INDEX`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Display details of the student at the specified STUDENT_INDEX.
+* The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `view 2` shows the details associated with the 2nd student
+
 
 ### Clearing all entries : `clear`
 
@@ -166,9 +140,63 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
+### Adding progress for a student : `add -p`
+
+Adds a given string representing progress to a student with a given student index.
+
+Format: `add -p STUDENT_INDEX PROGRESS`
+
+* Adds `PROGRESS` for the student at the specified `STUDENT_INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `add -p 2 completed homework` adds `completed homework` to the 2nd student in the list.
+
+### Deleting progress from a student : `del -p`
+
+Removes the string representing progress from the student with a given student index.
+
+Format: `del -p STUDENT_INDEX`
+
+* Deletes the `PROGRESS` for the student at the specified `STUDENT_INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `del -p 2` deletes the progress of the 2nd student in the list.
+
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
+
+### Set payment made: `paid`
+
+Sets the payment status of the specified student to `paid` for the current month. 
+
+Format: `paid STUDENT_INDEX`
+
+- Sets the payment status for the student at the specified `STUDENT_INDEX` as "paid" for the current month.
+- The index refers to the index number shown in the displayed student list.
+- The index must be a **positive integer** 1, 2, 3, ...
+
+Example:
+
+- `paid 3` updates the 3rd student's payment status to "paid".
+
+### Unset payment made: `unpaid`
+
+Sets the payment status of the specified student to ‘unpaid’ for the current month.
+
+Format: `unpaid STUDENT_INDEX`
+
+- Sets the payment status for the student at the specified `STUDENT_INDEX` as "unpaid" for the current month.
+- The index refers to the index number shown in the displayed student list.
+- The index must be a **positive integer** 1, 2, 3, …
+
+Examples:
+
+- `unpaid 3` updates the 3rd student's payment status to "unpaid".
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -183,10 +211,16 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add -s sn/STUDENT_NAME [sp/STUDENT_PHONE] [pn/PARENT_NAME] [pp/PARENT_PHONE]…​` <br> e.g., `add -s sn/John Does sp/81234567 pn/Mrs Doe pp/91234567`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `del -s STUDENT_INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Set payment made** | `paid STUDENT_INDEX`<br>e.g., `paid 3` 
+**Unset payment made** | `unpaid STUDENT_INDEX`<br>e.g., `unpaid 3`
+**Add Progress** | `add -p STUDENT_INDEX PROGRESS` <br> e.g., `add -p 2 completed homework`
+**Delete Progress** | `del -p STUDENT_INDEX` <br> e.g., `del -p 2`
+**View** | `view STUDENT_INDEX`<br> e.g., `view 2`
+**Exit** | `exit`
